@@ -1,0 +1,31 @@
+    //Leaf at same level (GFG)
+    //Given a Binary Tree, check if all leaves are at same level or not.
+    
+    
+    private:
+    void DFS(Node *root,int level,unordered_map<int,int> &ump)
+    {
+        if(!root->left && !root->right)   
+            ump[level]=root->data;
+            
+        if(root->left)    
+            DFS(root->left,level+1,ump);
+        if(root->right)    
+            DFS(root->right,level+1,ump);
+        
+    }
+  public:
+    /*You are required to complete this method*/
+    bool check(Node *root)
+    {
+        //Your code here
+        unordered_map<int,int> ump;
+        DFS(root,1,ump);
+        
+        if(ump.size()>1)
+            return 0;
+        
+        return 1;    
+        
+    }
+    
